@@ -8,7 +8,8 @@
         "build": "next build",
         "start": "next start",
         "precommit": "lint-staged",
-        "import-data": "./node_modules/babel-cli/bin/babel-node.js ./scripts/import-data/index.js"
+        "import-data":
+            "./node_modules/babel-cli/bin/babel-node.js --presets es2015 ./scripts/import-data/index.js"
     },
     "lint-staged": {
         "*.{js,json}": [
