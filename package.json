@@ -8,7 +8,7 @@
         "build": "next build",
         "start": "next start",
         "precommit": "lint-staged",
-        "import": "./node_modules/babel-cli/bin/babel-node.js ./scripts/import.js"
+        "import-data": "./node_modules/babel-cli/bin/babel-node.js ./scripts/import-data/index.js"
     },
     "lint-staged": {
         "*.{js,json}": [
