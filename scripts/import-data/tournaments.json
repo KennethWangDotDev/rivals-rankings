@@ -1,8 +1,80 @@
 [
     {
         "name": "Road to Shine: Qualifier #1",
+        "url": "https://smash.gg/tournament/road-to-shine-rivals/events/qualifier-1-may-20th",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "The Bigger Balc 2017",
+        "url": "https://smash.gg/tournament/the-bigger-balc/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "Road to Shine: Qualifier #2",
+        "url": "https://smash.gg/tournament/road-to-shine-rivals/events/qualifier-2-june-10th",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "Road to Shine: Top 16",
+        "url": "https://smash.gg/tournament/road-to-shine-rivals/events/top-16-june-24th",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "RCS Season 2 - July Monthly",
+        "url": "https://smash.gg/tournament/na-rcs-july-monthly/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "Low Tier City 5",
+        "url": "https://smash.gg/tournament/low-tier-city-5/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "Super SmashCon 2017",
+        "url": "https://smash.gg/tournament/rivals-super-smash-con/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "RCS Season 2 - August Monthly",
+        "url": "https://smash.gg/tournament/na-rcs-august-monthly/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "Shine 2017",
+        "url": "https://smash.gg/tournament/shine-2017/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "RCS Season 2 - September Monthly",
         "url":
-            "https://smash.gg/tournament/road-to-shine-rivals/events/qualifier-1-may-20th",
+            "https://smash.gg/tournament/na-rcs-september-monthly/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "Heat Wave 2017",
+        "url": "https://smash.gg/tournament/heat-wave/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "GameTyrant Expo 2017",
+        "url": "https://smash.gg/tournament/gametyrant-expo-2017/events/rivals-of-aether",
+        "circuit": "RCS Season 2 Locals"
+    },
+    {
+        "name": "RCS Season 2 - October Monthly",
+        "url": "https://smash.gg/tournament/na-rcs-october-monthly/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "RCS Season 2 - November Monthly",
+        "url":
+            "https://smash.gg/tournament/na-rcs-november-monthly/events/rivals-of-aether-singles",
+        "circuit": "RCS Season 2 Monthlies"
+    },
+    {
+        "name": "RCS Season 2 - December Monthly",
+        "url":
+            "https://smash.gg/tournament/na-rcs-december-monthly/events/rivals-of-aether-singles",
         "circuit": "RCS Season 2 Monthlies"
     }
 ]

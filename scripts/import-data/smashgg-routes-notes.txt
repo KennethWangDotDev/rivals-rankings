@@ -1,5 +1,8 @@
+URL Base:
 https://smash.gg/tournament/road-to-shine-rivals/events/qualifier-2-june-10th/
-https://api.smash.gg/tournament/road-to-shine-rivals/event/qualifier-2-june-10th
+
+You can find bracket groups and brackets here!
 https://api.smash.gg/tournament/road-to-shine-rivals/event/qualifier-2-june-10th?expand[]=phase&expand[]=groups&expand[]=event
-https://api.smash.gg/tournament/road-to-shine-rivals/event/qualifier-2-june-10th/standings
-https://api.smash.gg/phase_group/383994?expand[]=sets
+
+Get player ID and standing and entrant ID
+https://api.smash.gg/tournament/road-to-shine-rivals/event/qualifier-2-june-10th/standings?entityType=event&expand[]=entrants&mutations[]=playerData&page=20&per_page=25
