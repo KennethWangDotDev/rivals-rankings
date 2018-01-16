@@ -41,7 +41,9 @@ export default () => (
                 <Desc center>
                     See how players rank in each region as well as in all of North America.
                 </Desc>
-                <CTAButton>View Rankings</CTAButton>
+                <a href="/rankings">
+                    <CTAButton>View Rankings</CTAButton>
+                </a>
             </TextContainerThree>
         </ContainerThree>
     </div>
