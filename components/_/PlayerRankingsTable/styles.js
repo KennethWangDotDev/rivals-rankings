@@ -2,22 +2,17 @@ import styled, { css } from 'styled-components';
 import { typography, colors } from '../../theme';
 import { depth } from '../../utils';
 
-// prettier-ignore
 const RankingsTable = styled.table`
     width: 100%;
-    ${depth(5)}
+    ${depth(5)};
 `;
-
-// prettier-ignore
 const TableHeader = styled.tr`
     background-color: ${colors.body};
 `;
-
-// prettier-ignore
 const Label = styled.td`
     color: white;
-    ${typography.size('h5')}
-    ${typography.useTitleFont}
+    ${typography.size('h5')};
+    ${typography.useTitleFont};
     text-align: center;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
@@ -45,27 +40,27 @@ const Entry = styled.tr`
 
 // prettier-ignore
 const Data = styled.td`
-    ${typography.size('p')}
+    ${typography.size('p')};
     color: black;
     text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 
     ${props => props.bold && css`
         font-weight: 800;
-    `}
+    `};
 
     ${props => props.red && css`
         color: ${colors.red[800]};
-    `}
+    `};
 
     ${props => props.green && css`
         color: ${colors.green[800]};
-    `}
+    `};
 `;
 
 const LinkBlock = styled.a`
     display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 `;
 
 export { RankingsTable, TableHeader, Label, Entry, Data, LinkBlock };

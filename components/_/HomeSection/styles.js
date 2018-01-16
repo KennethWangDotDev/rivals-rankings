@@ -20,7 +20,7 @@ const ContainerOne = styled.section`
     ${media.medium(`
         padding-left: 5%;
         background-position: 50% 0%;
-        height: 35rem;
+        height: 30rem;
     `)};
 
     ${media.small(`
@@ -51,17 +51,15 @@ const TextContainerOne = styled.div`
     `)};
 `;
 
-// prettier-ignore
 const Title = styled.h1`
-    ${typography.size('h1')}
-    ${typography.useTitleFont}
-    ${typography.margin('bottom', 0.5)}
+    ${typography.size('h1')};
+    ${typography.useTitleFont};
+    ${typography.margin('bottom', 0.5)};
     line-height: 1;
 `;
 
-// prettier-ignore
 const Desc = styled.p`
-    ${typography.size('h6')}
+    ${typography.size('h6')};
     line-height: 1.25;
     font-weight: 300;
 `;
@@ -73,6 +71,11 @@ const ContainerTwo = styled.section`
     background-color: #f7f7f7;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    ${media.medium(`
+        grid-template-columns: 1fr;
+        height: 20rem;
+    `)};
 `;
 
 const BrainImage = styled.div`
@@ -82,17 +85,31 @@ const BrainImage = styled.div`
     background-position: center center;
     margin: 2rem;
     margin-right: 0;
+
+    ${media.medium(`
+        display: none;
+    `)};
 `;
 
 const TextContainerTwo = styled.div`
     align-self: center;
     max-width: 30rem;
+
+    ${media.medium(`
+        padding-left: 1.5rem;
+    `)};
 `;
 
 const ContainerThree = styled.div`
     width: 100%;
     height: 30rem;
     position: relative;
+
+    ${media.medium(`
+        padding-left: 5%;
+        background-position: 50% 0%;
+        height: 24rem;
+    `)};
 `;
 
 const TextContainerThree = styled.div`
@@ -103,18 +120,19 @@ const TextContainerThree = styled.div`
     text-align: center;
 `;
 
-// prettier-ignore
 const CTAButton = styled.div`
-    ${typography.useTitleFont}
-    ${typography.size('h4')}
-    ${typography.margin('top', 1.5)}
+    ${typography.useTitleFont};
+    ${typography.size('h4')};
+    ${typography.margin('top', 1.5)};
     color: white;
     outline: none;
     background: ${colors.theme[400]};
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    padding: 1rem 6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    min-width: 20rem;
     text-rendering: optimizeLegibility;
     display: inline-block;
 

@@ -134,7 +134,6 @@ function size(level) {
             level === 'hero'
         )
     ) {
-        // eslint-disable-next-line no-param-reassign
         level = 'p';
     }
     let statement = '';
@@ -170,7 +169,6 @@ function margin(direction, amount) {
             direction === 'right'
         )
     ) {
-        // eslint-disable-next-line no-param-reassign
         direction = 'bottom';
     }
     let statement = '';
@@ -196,7 +194,6 @@ function padding(direction, amount) {
             direction === 'right'
         )
     ) {
-        // eslint-disable-next-line no-param-reassign
         direction = 'down';
     }
     let statement = '';

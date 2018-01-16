@@ -1,14 +1,15 @@
 {
     "name": "rivals-rankings-smashgg",
     "url": "git@github.com:ads1018/next-apollo-example.git",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Rivals Rankings using SmashGG",
     "scripts": {
         "dev": "next",
         "build": "next build",
         "start": "next start",
         "precommit": "lint-staged",
-        "import-data": "./node_modules/babel-cli/bin/babel-node.js --presets es2015 ./scripts/import-data/index.js"
+        "import-data":
+            "./node_modules/babel-cli/bin/babel-node.js --presets es2015 ./scripts/import-data/index.js"
     },
     "lint-staged": {
         "*.{js,json}": [
@@ -47,6 +48,7 @@
         "graphql-tag": "^2.6.0",
         "isomorphic-fetch": "^2.2.1",
         "modular-scale": "^4.4.1",
+        "moment": "^2.20.1",
         "next": "^4.2.1",
         "next-apollo": "^1.0.4",
         "path": "^0.12.7",
@@ -54,6 +56,7 @@
         "react": "^16.2.0",
         "react-apollo": "^2.0.4",
         "react-dom": "^16.2.0",
+        "react-toggle-display": "^2.2.0",
         "styled-components": "^2.3.0"
     }
 }

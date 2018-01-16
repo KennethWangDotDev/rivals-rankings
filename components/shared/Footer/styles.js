@@ -9,9 +9,8 @@ const Footer = styled.footer`
     padding: 1rem;
 `;
 
-// prettier-ignore
 const Text = styled.p`
-    ${typography.size('small')}
+    ${typography.size('small')};
     color: #9e9e9e;
     text-align: center;
 `;

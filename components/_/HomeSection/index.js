@@ -46,20 +46,3 @@ export default () => (
         </ContainerThree>
     </div>
 );
-
-/*
-<section class="home__trueskill">
-        <div class="image">
-            <img src="/images/neural.jpg" />
-        </div>
-        <div class="text">
-        <h1 class="title">TrueSkill Ratings</h1>
-        <p class="desc">We use a modern implementation of Microsoft's TrueSkill algorithm, which provides an accurate approximation of player's skill level.</p>
-        </div>
-    </section>
-    <section class="home__action">
-        <h1 class="title">Explore The Rankings</h1>
-        <p class="desc">See how players rank in each region as well as in all of North America.</p>
-        <div class="button-container"><a href="/rankings/national/"><button>View Rankings</button></a></div>
-    </section>
-    */
