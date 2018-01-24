@@ -1,7 +1,12 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { graphql } from 'react-apollo';
+import type { OperationComponent } from 'react-apollo';
 import gql from 'graphql-tag';
 import ErrorMessage from '../../shared/ErrorMessage';
+
+import type { allTournamentsQuery as AllTournamentsQuery } from '../graphql-types.js.flow';
 
 // eslint-disable-next-line react/prop-types
 function TournamentList({ data: { loading, error, allTournaments } }) {
@@ -34,4 +39,8 @@ const allTournaments = gql`
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (TournamentList)
-export default graphql(allTournaments, {})(TournamentList);
+export const withAllTournaments: OperationComponent<AllTournamentsQuery> = graphql(
+    allTournaments,
+    {}
+);
+export default withAllTournaments(TournamentList);

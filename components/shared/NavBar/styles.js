@@ -1,3 +1,5 @@
+// @flow
+
 import styled, { css } from 'styled-components';
 import { colors } from '../../theme';
 import { media } from '../../utils';

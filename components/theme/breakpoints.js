@@ -1,3 +1,5 @@
+// @flow
+
 const breakpoints = {
     extraLarge: {
         width: 1280,

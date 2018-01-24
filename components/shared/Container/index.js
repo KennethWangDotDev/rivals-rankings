@@ -1,8 +1,10 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 
-const TrueContainer = ({ children }) => <Container>{children}</Container>;
+const TrueContainer = ({ children }: { children: React.Node }) => <Container>{children}</Container>;
 TrueContainer.propTypes = {
     children: PropTypes.node.isRequired
 };

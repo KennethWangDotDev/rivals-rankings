@@ -1,3 +1,5 @@
+// @flow
+
 import glamorous from 'glamorous';
 
 export const Container = glamorous.section({

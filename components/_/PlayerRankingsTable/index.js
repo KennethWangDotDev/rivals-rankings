@@ -1,9 +1,14 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
+import type { OperationComponent } from 'react-apollo';
 import gql from 'graphql-tag';
 import ErrorMessage from '../../shared/ErrorMessage';
 import { RankingsTable, TableHeader, Label, Entry, Data, LinkBlock } from './styles';
+
+import type { allPlayersQuery as AllPlayersQuery } from '../graphql-types.js.flow';
 
 const DataWithLink = props => (
     <Data {...props}>
@@ -45,9 +50,11 @@ function PlayerRankingsTable({ data: { loading, error, allPlayers } }) {
                                 {player._lostSetsMeta.count}
                             </DataWithLink>
                             <DataWithLink id={player.id}>
-                                {Math.round(player._wonSetsMeta.count /
+                                {Math.round(
+                                    player._wonSetsMeta.count /
                                         (player._wonSetsMeta.count + player._lostSetsMeta.count) *
-                                        1000) / 10}%
+                                        1000
+                                ) / 10}%
                             </DataWithLink>
                             <DataWithLink id={player.id}>{player.ratings}</DataWithLink>
                         </Entry>
@@ -77,4 +84,5 @@ const allPlayersQuery = gql`
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (TournamentList)
-export default graphql(allPlayersQuery, {})(PlayerRankingsTable);
+const withAllPlayers: OperationComponent<AllPlayersQuery> = graphql(allPlayersQuery, {});
+export default withAllPlayers(PlayerRankingsTable);

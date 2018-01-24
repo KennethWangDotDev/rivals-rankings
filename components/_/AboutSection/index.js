@@ -1,8 +1,10 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import PropType from 'prop-types';
 import { Title, Paragraph } from './styles';
 
-const AboutSection = ({ children, title }) => (
+const AboutSection = ({ children, title }: { children: React.Node, title: string }) => (
     <div>
         <Title>{title}</Title>
         <Paragraph>{children}</Paragraph>

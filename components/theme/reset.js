@@ -1,3 +1,5 @@
+// @flow
+
 const reset = `
 /**
  * 1. Set default font family to sans-serif.

@@ -1,3 +1,5 @@
+// @flow
+
 import modularScale from 'modular-scale';
 import { breakpoints, largestBreakpoint } from '../theme/breakpoints';
 import { colors } from '../theme/colors';
@@ -120,95 +122,60 @@ for (const key in breakpoints) {
     }
 }
 
-function size(level) {
-    if (
-        !(
-            level === 'small' ||
-            level === 'p' ||
-            level === 'h6' ||
-            level === 'h5' ||
-            level === 'h4' ||
-            level === 'h3' ||
-            level === 'h2' ||
-            level === 'h1' ||
-            level === 'hero'
-        )
-    ) {
-        level = 'p';
-    }
+type Level = 'small' | 'p' | 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1' | 'hero';
+
+function size(level: Level = 'p') {
     let statement = '';
-    for (const key in breakpoints) {
-        if (breakpoints.hasOwnProperty(key)) {
-            const largest = largestBreakpoint();
-            if (largest === key) {
-                statement += `${`font-size: ${typeScale[key][level]}rem;`}\n`;
-            } else {
-                statement += `${media[key](`font-size: ${typeScale[key][level]}rem;`)}\n`;
-            }
+    for (const key of Object.keys(breakpoints)) {
+        const largest = largestBreakpoint();
+        if (largest === key) {
+            statement += `${`font-size: ${typeScale[key][level]}rem;`}\n`;
+        } else {
+            statement += `${media[key](`font-size: ${typeScale[key][level]}rem;`)}\n`;
         }
     }
     return statement;
 }
 
-function verticalRhythm(amount = 1) {
+function verticalRhythm(amount: number = 1) {
     const vr = {};
-    for (const key in breakpoints) {
-        if (breakpoints.hasOwnProperty(key)) {
-            vr[key] = lineHeight * typeScale[key].p * amount;
-        }
-    }
+    Object.keys(breakpoints).forEach(key => {
+        vr[key] = lineHeight * typeScale[key].p * amount;
+    });
     return vr;
 }
 
-function margin(direction, amount) {
-    if (
-        !(
-            direction === 'top' ||
-            direction === 'bottom' ||
-            direction === 'left' ||
-            direction === 'right'
-        )
-    ) {
-        direction = 'bottom';
-    }
+function margin(direction: 'top' | 'bottom' | 'left' | 'right' = 'bottom', amount: number) {
     let statement = '';
-    for (const key in breakpoints) {
-        if (breakpoints.hasOwnProperty(key)) {
-            const largest = largestBreakpoint();
-            if (largest === key) {
-                statement += `margin-${direction}: ${verticalRhythm(amount)[key] * amount}rem;\n`;
-            } else {
-                statement += `${media[key](`margin-${direction}: ${verticalRhythm(amount)[key] * amount}rem;`)}\n`;
-            }
+    for (const key of Object.keys(breakpoints)) {
+        const largest = largestBreakpoint();
+        if (largest === key) {
+            statement += `margin-${direction}: ${verticalRhythm(amount)[key] * amount}rem;\n`;
+        } else {
+            statement += `${media[key](
+                `margin-${direction}: ${verticalRhythm(amount)[key] * amount}rem;`
+            )}\n`;
         }
     }
     return statement;
 }
 
-function padding(direction, amount) {
-    if (
-        !(
-            direction === 'up' ||
-            direction === 'down' ||
-            direction === 'bottom' ||
-            direction === 'right'
-        )
-    ) {
-        direction = 'down';
-    }
+function padding(direction: 'up' | 'down' | 'bottom' | 'right' = 'down', amount: number) {
     let statement = '';
-    for (const key in breakpoints) {
-        if (breakpoints.hasOwnProperty(key)) {
-            const largest = largestBreakpoint();
-            if (largest === key) {
-                statement += `padding-${direction}: ${verticalRhythm(amount)[key] * amount}rem;\n`;
-            } else {
-                statement += `${media[key](`padding-${direction}: ${verticalRhythm(amount)[key] * amount}rem;`)}\n`;
-            }
+    for (const key of Object.keys(breakpoints)) {
+        const largest = largestBreakpoint();
+        if (largest === key) {
+            statement += `padding-${direction}: ${verticalRhythm(amount)[key] * amount}rem;\n`;
+        } else {
+            statement += `${media[key](
+                `padding-${direction}: ${verticalRhythm(amount)[key] * amount}rem;`
+            )}\n`;
         }
     }
     return statement;
 }
+
+export type { Level };
 
 export {
     fontsDeclaration,

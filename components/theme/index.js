@@ -1,3 +1,5 @@
+// @flow
+
 import { colors } from './colors';
 import * as typography from './typography';
 import { breakpoints } from './breakpoints';

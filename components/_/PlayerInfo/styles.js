@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import { typography, colors } from '../../theme';
 import { depth } from '../../utils';

@@ -5,3 +5,7 @@ node_modules
 npm-debug.log
 
 static/fonts
+
+# GraphQL
+/schema.json
+graphql-types.js.flow
