@@ -1,0 +1,81 @@
+type Circuit @model {
+  id: ID! @isUnique
+  name: String! @isUnique
+  url: String @isUnique
+  tournaments: [Tournament!]! @relation(name: "CircuitOnTournament")
+}
+
+type Tournament @model {
+  id: ID! @isUnique
+  smashId: String! @isUnique
+  name: String!
+  numberOfPlayers: Int
+  date: DateTime
+  url: String!
+  circuit: Circuit @relation(name: "CircuitOnTournament")
+  bracketGroups: [BracketGroup!]! @relation(name: "BracketGroupOnTournament")
+}
+
+type BracketGroup @model {
+  id: ID! @isUnique
+  smashId: String! @isUnique
+  label: String
+  tournament: Tournament @relation(name: "BracketGroupOnTournament")
+  brackets: [Bracket!]! @relation(name: "BracketOnBracketGroup")
+}
+
+type Bracket @model {
+  id: ID! @isUnique
+  smashId: String! @isUnique
+  label: String
+  sets: [Set!]! @relation(name: "BracketOnSet")
+  bracketGroup: BracketGroup @relation(name: "BracketOnBracketGroup")
+}
+
+type Set @model {
+  id: ID! @isUnique
+  smashId: String! @isUnique
+  winner: Player @relation(name: "SetOnWinner")
+  loser: Player @relation(name: "SetOnLoser")
+  bracket: Bracket @relation(name: "BracketOnSet")
+  matches: [Match!]! @relation(name: "MatchOnSet")
+  winnerScore: Int
+  loserScore: Int
+  ratingsWinnerOld: Int
+  ratingsLoserOld: Int
+  ratingsWinnerNew: Int
+  ratingsLoserNew: Int
+  ratingsChangeWinner: Int
+  ratingsChangeLoser: Int
+  date: DateTime
+  label: String
+}
+
+type Match @model {
+  id: ID! @isUnique
+  smashId: String
+  gameNumber: Int
+  set: Set @relation(name: "MatchOnSet")
+  winner: Player @relation(name: "MatchOnWinner")
+  loser: Player @relation(name: "MatchOnLoser")
+  winnerCharacter: String
+  loserCharacter: String
+  date: DateTime
+}
+
+type Player @model {
+  id: ID! @isUnique
+  smashId: String! @isUnique
+  teamName: String
+  name: String!
+  realName: String
+  state: String
+  country: String
+  ratings: Int! @defaultValue(value: 1500)
+  rd: Float! @defaultValue(value: 200.0)
+  vol: Float! @defaultValue(value: 0.06)
+  wonMatches: [Match!]! @relation(name: "MatchOnWinner")
+  lostMatches: [Match!]! @relation(name: "MatchOnLoser")
+  wonSets: [Set!]! @relation(name: "SetOnWinner")
+  lostSets: [Set!]! @relation(name: "SetOnLoser")
+}
