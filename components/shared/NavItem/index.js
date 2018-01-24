@@ -1,8 +1,10 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ListItem, Link } from './styles';
 
-const NavItem = ({ url, label, active }) => (
+const NavItem = ({ url, label, active }: { url: string, label: string, active: boolean }) => (
     <ListItem active={active}>
         <Link active={active} href={url}>
             {label}

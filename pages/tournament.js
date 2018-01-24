@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import Main from '../lib/layout';
 import TournamentInfo from '../components/_/TournamentInfo';
 import withData from '../lib/apollo';

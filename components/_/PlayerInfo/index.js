@@ -1,5 +1,8 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { graphql } from 'react-apollo';
+import type { OperationComponent } from 'react-apollo';
 import gql from 'graphql-tag';
 import ErrorMessage from '../../shared/ErrorMessage';
 import Container from '../../shared/Container';
@@ -14,7 +17,9 @@ import {
     BasicInfoAnswer
 } from './styles';
 
-function setSort(a, b) {
+import type { PlayerQuery, PlayerQueryVariables } from '../graphql-types.js.flow';
+
+function setSort(a: { date: string }, b: { date: string }): -1 | 0 | 1 {
     if (new Date(a.date) < new Date(b.date)) {
         return 1;
     }
@@ -24,12 +29,50 @@ function setSort(a, b) {
     return 0;
 }
 
+type ParsedMatch = {
+    winner: ?{
+        id: string,
+        teamName: ?string,
+        name: string
+    },
+    winnerCharacter: ?string,
+    loser: ?{
+        id: string,
+        teamName: ?string,
+        name: string
+    },
+    loserCharacter: ?string,
+    gameNumber: ?number
+};
+
+type ParsedSet = {
+    bracketGroupLabel: ?string,
+    bracketGroupSmashId: ?string,
+    bracketLabel: ?string,
+    bracketSmashId: ?string,
+    date: ?string,
+    id: string,
+    matches: ?Array<ParsedMatch>,
+    opponent: ?string,
+    opponentId: ?string,
+    opponentRatings: ?number,
+    opponentRatingsChange: ?number,
+    opponentScore: ?number,
+    didWin: boolean,
+    player: ?string,
+    playerRatings: ?string,
+    playerRatingsChange: ?string,
+    playerScore: ?string,
+    tournament: ?string,
+    tournamentUrl: ?string
+};
+
 // eslint-disable-next-line react/prop-types
 function PlayerInfo({ data: { loading, error, Player } }) {
     if (error) return <ErrorMessage message="Error loading posts." />;
     if (loading) return <p>Loading...</p>;
     if (Player) {
-        const combinedSet = [];
+        const combinedSet: ParsedSet[] = [];
         for (const set of Player.wonSets) {
             const parsedSet = {};
             parsedSet.id = set.id;
@@ -123,15 +166,17 @@ function PlayerInfo({ data: { loading, error, Player } }) {
                         <BasicInfoEntry>
                             <BasicInfoQuestion>Win Percent:</BasicInfoQuestion>
                             <BasicInfoAnswer>
-                                {Math.round(Player.wonSets.length /
+                                {Math.round(
+                                    Player.wonSets.length /
                                         (Player.lostSets.length + Player.wonSets.length) *
-                                        1000) / 10}%
+                                        1000
+                                ) / 10}%
                             </BasicInfoAnswer>
                         </BasicInfoEntry>
                     </BasicInfoContainer>
 
                     <Subtitle>Match History</Subtitle>
-                    {combinedSet.map((set, index) => <SetInfo set={set} key={set.id} />)}
+                    {combinedSet.map((set, _index) => <SetInfo set={set} key={set.id} />)}
                 </PlayerCard>
             </Container>
         );
@@ -262,8 +307,11 @@ const query = gql`
     }
 `;
 
+export type { ParsedSet, ParsedMatch };
+
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (TournamentList)
-export default graphql(query, {
+const withPlayerInfo: OperationComponent<PlayerQuery, PlayerQueryVariables> = graphql(query, {
     options: ({ id }) => ({ variables: { id } })
-})(PlayerInfo);
+});
+export default withPlayerInfo(PlayerInfo);

@@ -132,19 +132,20 @@ async function setupPlayersMap() {
         maps.playerSmashIdToId[obj.smashId] = obj.id;
     }
 }
-(async function () {
+(async function() {
     await setupCircuitsMap();
     await setupPlayersMap();
-}());
+})();
 
 /* ==========================================
 *  Queries
 /* ========================================== */
 
-const createCircuitsQuery = async (circuits) => {
+const createCircuitsQuery = async circuits => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(circuits)
-        .map(circuit => `
+        .map(
+            circuit => `
             k_${circuit.name.split(' ').join('')}: createCircuit(
                 name: "${circuit.name}",
                 url: ${circuit.url !== undefined ? `"${circuit.url}"` : null}
@@ -152,13 +153,16 @@ const createCircuitsQuery = async (circuits) => {
                 id
                 name
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -168,10 +172,11 @@ const createCircuitsQuery = async (circuits) => {
     return response;
 };
 
-const createPlayersQuery = async (players) => {
+const createPlayersQuery = async players => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(players)
-        .map(player => `
+        .map(
+            player => `
             k_${player.id}: createPlayer(
                 teamName: ${player.prefix ? `"${sanitize(player.prefix)}"` : null}
                 name: ${player.gamerTag ? `"${sanitize(player.gamerTag)}"` : null}
@@ -184,13 +189,16 @@ const createPlayersQuery = async (players) => {
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -199,10 +207,11 @@ const createPlayersQuery = async (players) => {
     setupMapFromResponse(response, 'playerSmashIdToId', 'smashId', 'id');
 };
 
-const createTournamentsQuery = async (tournaments) => {
+const createTournamentsQuery = async tournaments => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(tournaments)
-        .map(tournament => `
+        .map(
+            tournament => `
             k_${cleanName(tournament.name)}: createTournament(
                 name: "${tournament.name}"
                 url: ${tournament.url !== undefined ? `"${tournament.url}"` : null}
@@ -214,13 +223,16 @@ const createTournamentsQuery = async (tournaments) => {
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -230,10 +242,11 @@ const createTournamentsQuery = async (tournaments) => {
     return response;
 };
 
-const createBracketGroupsQuery = async (bracketGroups) => {
+const createBracketGroupsQuery = async bracketGroups => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(bracketGroups)
-        .map(bracketGroup => `
+        .map(
+            bracketGroup => `
             k_${bracketGroup.smashId}: createBracketGroup(
                 smashId: "${bracketGroup.smashId}"
                 label: ${bracketGroup.label !== undefined ? `"${bracketGroup.label}"` : null}
@@ -242,13 +255,16 @@ const createBracketGroupsQuery = async (bracketGroups) => {
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -258,10 +274,11 @@ const createBracketGroupsQuery = async (bracketGroups) => {
     return response;
 };
 
-const createBracketsQuery = async (brackets) => {
+const createBracketsQuery = async brackets => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(brackets)
-        .map(bracket => `
+        .map(
+            bracket => `
             k_${bracket.smashId}: createBracket(
                 smashId: "${bracket.smashId}"
                 label: ${bracket.label !== undefined ? `"${bracket.label}"` : null}
@@ -270,13 +287,16 @@ const createBracketsQuery = async (brackets) => {
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -286,10 +306,11 @@ const createBracketsQuery = async (brackets) => {
     return response;
 };
 
-const createSetsQuery = async (sets) => {
+const createSetsQuery = async sets => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(sets)
-        .map(set => `
+        .map(
+            set => `
             k_${set.smashId}: createSet(
                 smashId: "${set.smashId}"
                 bracketId: "${maps.bracketSmashIdToId[set.bracketId]}"
@@ -309,13 +330,16 @@ const createSetsQuery = async (sets) => {
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -325,10 +349,11 @@ const createSetsQuery = async (sets) => {
     return response;
 };
 
-const createMatchesQuery = async (matches) => {
+const createMatchesQuery = async matches => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(matches)
-        .map(match => `
+        .map(
+            match => `
             k_${match.smashId}: createMatch(
                 smashId: "${match.smashId}"
                 setId: "${maps.setSmashIdToId[match.setId]}"
@@ -337,26 +362,29 @@ const createMatchesQuery = async (matches) => {
                 gameNumber: ${match.number}
                 date: "${unixToIso(match.date)}"
                 winnerCharacter: ${
-    match.winnerCharacter !== undefined
-        ? `"${maps.selectionValueToCharacterEnum[match.winnerCharacter]}"`
-        : null
-}
+                    match.winnerCharacter !== undefined
+                        ? `"${maps.selectionValueToCharacterEnum[match.winnerCharacter]}"`
+                        : null
+                }
                 loserCharacter: ${
-    match.loserCharacter !== undefined
-        ? `"${maps.selectionValueToCharacterEnum[match.loserCharacter]}"`
-        : null
-}
+                    match.loserCharacter !== undefined
+                        ? `"${maps.selectionValueToCharacterEnum[match.loserCharacter]}"`
+                        : null
+                }
             ) { 
                 smashId
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {
@@ -365,10 +393,11 @@ const createMatchesQuery = async (matches) => {
     return response;
 };
 
-const updatePlayerRatingsQuery = async (playerRatings) => {
+const updatePlayerRatingsQuery = async playerRatings => {
     const BATCH_SIZE = 50;
     const mutations = _.chain(playerRatings)
-        .map(playerRating => `
+        .map(
+            playerRating => `
             k_${playerRating.id}: updatePlayer(
                 id: "${maps.playerSmashIdToId[playerRating.id]}"
                 ratings: ${playerRating.ratings}
@@ -377,13 +406,16 @@ const updatePlayerRatingsQuery = async (playerRatings) => {
             ) { 
                 id 
             }
-        `)
+        `
+        )
         .chunk(BATCH_SIZE)
-        .map(chunk => `
+        .map(
+            chunk => `
             mutation {
                 ${chunk.join('\n')}
             }
-        `)
+        `
+        )
         .value();
 
     const response = await Bluebird.map(mutations, mutation => client.request(mutation), {

@@ -1,4 +1,6 @@
-function depth(level) {
+// @flow
+
+function depth(level: number) {
     if (level < 0) {
         level = 1;
     }

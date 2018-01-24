@@ -1,4 +1,11 @@
-function smartUnderline(background, color, width: '1px', percent: '93%') {
+// @flow
+
+function smartUnderline(
+    background: string,
+    color: string,
+    width: string = '1px',
+    percent: string = '93%'
+) {
     const statement = `
         text-shadow:  .06em 0 ${background}, 
         -.06em 0 ${background},

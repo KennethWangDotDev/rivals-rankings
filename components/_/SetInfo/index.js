@@ -1,5 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import ToggleDisplay from 'react-toggle-display';
 import Moment from 'moment';
 import {
@@ -20,20 +21,28 @@ import {
     InfoData
 } from './styles';
 
-class Set extends React.Component {
+import type { ParsedSet } from '../PlayerInfo';
+
+type Props = {
+    set: ParsedSet
+};
+type State = {
+    show: boolean
+};
+
+class Set extends React.Component<Props, State> {
     constructor() {
         super();
         this.state = {
             show: false
         };
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState({
             show: !this.state.show
         });
-    }
+    };
 
     render() {
         const { set } = this.props;
@@ -89,7 +98,7 @@ class Set extends React.Component {
                                     <InfoHeadData>Character</InfoHeadData>
                                 </tr>
                             )}
-                            {set.matches.map((match, index) => (
+                            {set.matches.map((match, _index) => (
                                 <tr>
                                     <InfoData>{match.gameNumber}</InfoData>
                                     <InfoData>{match.winner.name}</InfoData>

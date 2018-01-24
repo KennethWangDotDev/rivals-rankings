@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import Main from '../lib/layout';
 import HomeSection from '../components/_/HomeSection';
 import withData from '../lib/apollo';

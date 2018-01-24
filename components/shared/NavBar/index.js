@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import NavItem from '../NavItem';
 import { Container, Navigation, Logo, NavItemContainer, NavToggle, HamburgerIcon } from './styles';
 
@@ -9,20 +11,24 @@ const navItemsList = [
     { label: 'About', url: '/about' }
 ];
 
-class NavBar extends React.Component {
+type Props = {};
+type State = {
+    navCollapsed: boolean
+};
+
+class NavBar extends React.Component<Props, State> {
     constructor() {
         super();
         this.state = {
             navCollapsed: false
         };
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState({
             navCollapsed: !this.state.navCollapsed
         });
-    }
+    };
 
     render() {
         return (

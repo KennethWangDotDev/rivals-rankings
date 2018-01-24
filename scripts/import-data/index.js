@@ -74,7 +74,9 @@ function objectPropToArray(object, property) {
  */
 async function toAdd(jsonArray, node, key) {
     const existing = await queryExisting(node, [key]);
-    const filteredArray = jsonArray.filter(one => !objectPropToArray(existing, key).includes(one[key]));
+    const filteredArray = jsonArray.filter(
+        one => !objectPropToArray(existing, key).includes(one[key])
+    );
     return filteredArray;
 }
 
@@ -146,7 +148,9 @@ async function updatePlayerRatings(glickoPlayers) {
  */
 async function mapEntrantIdToPlayerId(url, page = 1, map = {}) {
     const response = await got(
-        eventUrlToApiEndpoint(url).concat(`/standings?entityType=event&expand[]=entrants&mutations[]=playerData&page=${page}&per_page=100`),
+        eventUrlToApiEndpoint(url).concat(
+            `/standings?entityType=event&expand[]=entrants&mutations[]=playerData&page=${page}&per_page=100`
+        ),
         {
             json: true
         }
@@ -261,27 +265,37 @@ async function fetchAllDataForTournaments(tournaments) {
                 { json: true }
             );
             const { sets } = bracketResponse.body.entities;
-            const setWithoutDQs = sets.filter(set =>
-                set.entrant1Score !== -1 &&
+            const setWithoutDQs = sets.filter(
+                set =>
+                    set.entrant1Score !== -1 &&
                     set.entrant2Score !== -1 &&
                     set.entrant1Score !== null &&
-                    set.entrant2Score !== null);
+                    set.entrant2Score !== null
+            );
             setWithoutDQs.sort(compareByDate);
 
             for (const set of setWithoutDQs) {
                 thisTournament.date = setWithoutDQs[0].updatedAt;
                 // Glicko Update
                 const glickoMatches = [];
-                const winnerOldPoints = Math.ceil(glickoPlayers[entrantIdToPlayerId(set.winnerId, playersMap)].getRating());
-                const loserOldPoints = Math.ceil(glickoPlayers[entrantIdToPlayerId(set.loserId, playersMap)].getRating());
+                const winnerOldPoints = Math.ceil(
+                    glickoPlayers[entrantIdToPlayerId(set.winnerId, playersMap)].getRating()
+                );
+                const loserOldPoints = Math.ceil(
+                    glickoPlayers[entrantIdToPlayerId(set.loserId, playersMap)].getRating()
+                );
                 glickoMatches.push([
                     glickoPlayers[entrantIdToPlayerId(set.winnerId, playersMap)],
                     glickoPlayers[entrantIdToPlayerId(set.loserId, playersMap)],
                     1
                 ]);
                 glickoRankings.updateRatings(glickoMatches);
-                const winnerNewPoints = Math.ceil(glickoPlayers[entrantIdToPlayerId(set.winnerId, playersMap)].getRating());
-                const loserNewPoints = Math.ceil(glickoPlayers[entrantIdToPlayerId(set.loserId, playersMap)].getRating());
+                const winnerNewPoints = Math.ceil(
+                    glickoPlayers[entrantIdToPlayerId(set.winnerId, playersMap)].getRating()
+                );
+                const loserNewPoints = Math.ceil(
+                    glickoPlayers[entrantIdToPlayerId(set.loserId, playersMap)].getRating()
+                );
                 const winnerPointsDelta = winnerNewPoints - winnerOldPoints;
                 const loserPointsDelta = loserNewPoints - loserOldPoints;
 

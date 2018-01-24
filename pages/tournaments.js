@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import Main from '../lib/layout';
 import Title from '../components/shared/Title';
 import TournamentList from '../components/_/TournamentList';

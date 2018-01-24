@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import Main from '../lib/layout';
 import Container from '../components/shared/Container';
 import AboutSection from '../components/_/AboutSection';
@@ -23,8 +25,8 @@ export default withData(props => (
                 <br />The biggest difference between TrueSkill and other ranking systems is that in
                 the TrueSkill ranking system, skill is characterized by two numbers. The first
                 number: the average skill of the gamer, and the second number: the degree of
-                uncertainty in the gamer's skill. The ranking system maintains a belief in every
-                gamer’s skill using these two numbers.<br />
+                uncertainty in the gamer&apos;s skill. The ranking system maintains a belief in
+                every gamer’s skill using these two numbers.<br />
                 <br />If the uncertainty is still high, the ranking system does not yet know exactly
                 the skill of the gamer. In contrast, if the uncertainty is small, the ranking system
                 has a strong belief that the skill of the gamer is close to the average skill.

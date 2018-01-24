@@ -1,6 +1,8 @@
+// @flow
+
 import styled, { css } from 'styled-components';
 import { typography, colors } from '../../theme';
-import { depth, smartUnderline } from '../../utils';
+import { smartUnderline } from '../../utils';
 
 const Container = styled.div`
     ${typography.margin('bottom', 1)};

@@ -17,7 +17,9 @@ const query = T => `
   }
 `;
 
-const getAll = async (T) => {
+const toIds = array => array.map(e => e.id);
+
+const getAll = async T => {
     const res = await client.request(query(T));
     return toIds(res[`all${T}s`]);
 };
@@ -30,36 +32,36 @@ query Get${T}es {
 }
 `;
 
-const getAllEs = async (T) => {
+const getAllEs = async T => {
     const res = await client.request(queryEs(T));
     return toIds(res[`all${T}es`]);
 };
 
 const del = async (T, accounts) => {
-    await Promise.all(accounts.map((id) => {
-        const query = `
+    await Promise.all(
+        accounts.map(id => {
+            const delQuery = `
       mutation Delete${T}($id: ID!) {
         delete${T}(id: $id) {
           id
         }
       }
     `;
-        const variables = {
-            id
-        };
-        return client.request(query, variables);
-    }));
+            const variables = {
+                id
+            };
+            return client.request(delQuery, variables);
+        })
+    );
 };
 
-const toIds = array => array.map(e => e.id);
-
-const detroyAllDataIn = async (T) => {
+const detroyAllDataIn = async T => {
     const allAccounts = await getAll(T);
     await del(T, allAccounts);
     console.log(`Deleted: ${allAccounts.length} ${T}s`);
 };
 
-const detroyAllDataInEs = async (T) => {
+const detroyAllDataInEs = async T => {
     const allAccounts = await getAllEs(T);
     await del(T, allAccounts);
     console.log(`Deleted: ${allAccounts.length} ${T}s`);
