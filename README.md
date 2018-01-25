@@ -1,6 +1,20 @@
 # rivals-rankings
 
-[Rivals Rankings](http://rivalsrankings.com/) is a comprehensive ranking system for Rivals of Aether that features player profiles, match histories, and match statistics. It is developed with [React](https://reactjs.org/) + [Apollo Client](https://www.apollographql.com/client/) on the frontend, and [GraphQL](http://graphql.org/) as the backend data engine. It uses the [Next.js](https://github.com/zeit/next.js/) framework and takes full advantage of its features for rapid prototyping. Player rating is calculuated using [TrueSkill](https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/). 
+[Rivals Rankings](http://rivalsrankings.com/) is a comprehensive power ranking system for Rivals of Aether. It is developed with [React](https://reactjs.org/) + [Apollo Client](https://www.apollographql.com/client/) on the frontend, and [GraphQL](http://graphql.org/) as the backend data engine. It uses the [Next.js](https://github.com/zeit/next.js/) framework and takes full advantage of its features for rapid prototyping. Player rating is calculuated using [TrueSkill](https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/).
+
+## Features
+
+![alt text](https://i.imgur.com/ii6kMhB.png "Rivals Rankings Leaderboard")
+
+Rivals Rankings features:
+
+* Leaderboard with statistics on number of wins, losses, win rates, and rating
+* Profile for each player that contains the player's team and location
+* Match history with rating history
+* In-depth information on each match of sets
+  * Match number
+  * Winner of each match
+  * Characters chosen each match
 
 ## Installation
 
