@@ -6,6 +6,8 @@
 
 ![alt text](https://i.imgur.com/ii6kMhB.png "Rivals Rankings Leaderboard")
 
+![alt text](https://imgur.com/kRT3mIi.png "Rivals Rankings Player Profile")
+
 Rivals Rankings features:
 
 * Leaderboard with statistics on number of wins, losses, win rates, and rating
